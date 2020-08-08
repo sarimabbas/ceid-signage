@@ -1,0 +1,28 @@
+.slide {
+  /* text-align: center; */
+  padding: calc(10px + 4vmin);
+  min-height: 100vh;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  /* justify-content: center; */
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.slide > h1 {
+  font-size: 6rem;
+  margin: 0;
+}
+
+.slide > h2 {
+  font-size: 4rem;
+  margin: 0;
+}
+
+.slide > h3 {
+  font-size: 3rem;
+  margin: 0;
+  font-family: monospace;
+}
