@@ -3,7 +3,7 @@ import "./slide.css";
 import { DateTime, Interval } from "luxon";
 import openIntervals from "./openIntervals";
 
-export default () => {
+export default ({ userCount, totalCount }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentOpenInterval, setCurrentOpenInterval] = useState(null);
   const [now, setNow] = useState(DateTime.local());
@@ -54,7 +54,7 @@ export default () => {
   return (
     <div
       className="slide"
-      style={{ backgroundColor: isOpen ? "#5996AC" : "#26414B" }}
+      style={{ backgroundColor: isOpen ? "#31A926" : "#A9264C" }}
     >
       {/* current date */}
       <h3>
@@ -70,6 +70,9 @@ export default () => {
       ) : (
         <h1>The CEID is closed. Please come again later.</h1>
       )}
+      {/* slots remaining */}
+      <br />
+      {<h2>{totalCount - userCount} slots remaining.</h2>}
       {/* current interval */}
       {currentOpenInterval ? (
         <div>
