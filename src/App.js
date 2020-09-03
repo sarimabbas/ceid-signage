@@ -40,10 +40,14 @@ const App = () => {
     // and don't even check the other conditions
     let checkTwo = !(userTable.length > 0 && userTable.length >= capacityCount);
 
+    console.log("check two", checkTwo);
+
     // check if current time is within some interval
     let checkThree = schedule.some((interval) => {
       return interval.contains(now());
     });
+
+    console.log("check three", checkThree);
 
     setIsOpen(checkTwo && checkThree);
   };
