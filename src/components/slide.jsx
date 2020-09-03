@@ -72,7 +72,14 @@ export default ({ userCount, totalCount }) => {
       )}
       {/* slots remaining */}
       <br />
-      {<h2>{totalCount - userCount} slots remaining.</h2>}
+
+      <h2>{totalCount - userCount} slots remaining.</h2>
+      {totalCount - userCount < 3 ? (
+        <p>
+          There are not a lot of slots left. You may be asked to leave and
+          return at a later time.
+        </p>
+      ) : null}
       {/* current interval */}
       {currentOpenInterval ? (
         <div>
