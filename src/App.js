@@ -3,7 +3,7 @@ import { DateTime, Interval } from "luxon";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Sign from "./components/Sign";
 import Admin from "./components/Admin";
-import openIntervals from "./config/openIntervals";
+import { schedule } from "./config/openIntervals";
 import { db } from "./config/firebase";
 import "./styles/tailwind.output.css";
 
@@ -49,7 +49,7 @@ const App = () => {
       return;
     }
     // if the current time lies outside any interval, close the CEID
-    const isCurrentTimeWithinInterval = openIntervals.some((interval) => {
+    const isCurrentTimeWithinInterval = schedule.some((interval) => {
       return interval.contains(now());
     });
     console.log(

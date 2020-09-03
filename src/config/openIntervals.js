@@ -1,4 +1,11 @@
-import { DateTime, Interval } from "luxon";
+import { DateTime, Interval, Duration } from "luxon";
+
+const now = () =>
+  DateTime.fromObject({
+    weekday: DateTime.local().weekday,
+    hour: DateTime.local().hour,
+    minute: DateTime.local().minute,
+  });
 
 const monday = [
   // 10:30 - 12:00 noon
@@ -116,7 +123,30 @@ const friday = monday.map((interval) =>
   )
 );
 
-const combined = [...monday, ...tuesday, ...wednesday, ...friday];
+const thisWeek = [...monday, ...tuesday, ...wednesday, ...thursday, ...friday];
 
-export default monday;
-export { monday, tuesday, wednesday, thursday, friday, combined };
+const nextWeek = thisWeek.map((interval) => {
+  const start = DateTime.fromObject({
+    weekday: interval.weekday,
+    hour: interval.start.hour,
+    minute: interval.start.minute,
+  }).plus(
+    Duration.fromObject({
+      days: 7,
+    })
+  );
+  const end = DateTime.fromObject({
+    weekday: interval.weekday,
+    hour: interval.end.hour,
+    minute: interval.end.minute,
+  }).plus(
+    Duration.fromObject({
+      days: 7,
+    })
+  );
+  return Interval.fromDateTimes(start, end);
+});
+
+const schedule = [...thisWeek, ...nextWeek];
+
+export { schedule, now };

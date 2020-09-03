@@ -1,22 +1,15 @@
 import React from "react";
 import Logo from "../assets/logo.png";
 import { DateTime, Interval } from "luxon";
-import openIntervals from "../config/openIntervals";
+import { schedule, now } from "../config/openIntervals";
 import ProgressBar from "./Progress";
 import { ReactComponent as OpenIcon } from "../assets/open.svg";
 import { ReactComponent as ClosedIcon } from "../assets/closed.svg";
 
 export default ({ userCount, capacityCount, isOpen }) => {
-  const now = () =>
-    DateTime.fromObject({
-      weekday: DateTime.local().weekday,
-      hour: DateTime.local().hour,
-      minute: DateTime.local().minute,
-    });
-
   const getCurrentInterval = () => {
     let retInterval = null;
-    openIntervals.some((interval) => {
+    schedule.some((interval) => {
       if (interval.contains(now())) {
         retInterval = interval;
       }
@@ -33,14 +26,16 @@ export default ({ userCount, capacityCount, isOpen }) => {
   };
 
   const getNextInterval = () => {
+    let counter = 0;
+    let copyIntervals = [...schedule];
+    const currTime = now();
+    while (currTime > copyIntervals[counter].start) {
+      counter += 1;
+    }
     return (
       <div className="flex flex-col items-center">
         <h2 className="my-6 text-3xl">The next walk-in time is:</h2>
-        {openIntervals.map((i, index) => (
-          <div className="text-2xl" key={index}>
-            {renderInterval(i)}
-          </div>
-        ))}
+        <div className="text-4xl">{renderInterval(schedule[counter])}</div>
       </div>
     );
   };
@@ -52,6 +47,9 @@ export default ({ userCount, capacityCount, isOpen }) => {
     return (
       <h3>
         {interval.start.toLocaleString({
+          weekday: "short",
+          month: "short",
+          day: "2-digit",
           hour: "2-digit",
           minute: "2-digit",
         })}{" "}
@@ -94,13 +92,17 @@ export default ({ userCount, capacityCount, isOpen }) => {
         {getCurrentInterval() ? (
           <div className="mt-10">{getCurrentInterval()}</div>
         ) : (
-          getNextInterval()
+          <div className="mt-10">{getNextInterval()}</div>
         )}
 
         {/* capacity */}
         {/* <p>We've got {capacityCount - userCount} slots left.</p> */}
-        <h2 className="mt-20 mb-3 text-3xl">Capacity:</h2>
-        <ProgressBar value={userCount} max={capacityCount} />
+        {isOpen ? (
+          <div>
+            <h2 className="mt-20 mb-3 text-3xl">Capacity:</h2>
+            <ProgressBar value={userCount} max={capacityCount} />
+          </div>
+        ) : null}
       </div>
     </div>
   );
