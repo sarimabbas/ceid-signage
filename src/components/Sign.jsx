@@ -63,7 +63,7 @@ export default ({ userCount, capacityCount, isOpen }) => {
   };
 
   return (
-    <div className="container w-full h-full p-4 mx-auto">
+    <div className="container w-full h-full p-4 mx-auto text-center">
       {/* logo */}
       <img
         src={Logo}
@@ -98,10 +98,10 @@ export default ({ userCount, capacityCount, isOpen }) => {
         {/* capacity */}
         {/* <p>We've got {capacityCount - userCount} slots left.</p> */}
         {isOpen ? (
-          <div>
+          <>
             <h2 className="mt-20 mb-3 text-3xl">Capacity:</h2>
             <ProgressBar value={userCount} max={capacityCount} />
-          </div>
+          </>
         ) : null}
       </div>
     </div>
