@@ -85,7 +85,11 @@ export default ({ userCount, capacityCount, isOpen }) => {
         ) : (
           <div className="flex flex-col items-center">
             <ClosedIcon width="150" color="red" />
-            <p className="text-6xl">We are closed.</p>
+            <p className="text-6xl">
+              {userCount >= capacityCount
+                ? "We are at maximum capacity"
+                : "We are closed."}
+            </p>
           </div>
         )}
         {/* show current time interval, if within one, otherwise show all*/}
