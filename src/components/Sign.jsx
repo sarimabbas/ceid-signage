@@ -63,7 +63,7 @@ export default ({ userCount, capacityCount, isOpen }) => {
   };
 
   return (
-    <div className="container w-full h-full p-4 mx-auto text-center">
+    <div className="container w-full h-full p-4 mx-auto">
       {/* logo */}
       <img
         src={Logo}
