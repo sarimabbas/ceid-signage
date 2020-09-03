@@ -17,16 +17,17 @@ const App = () => {
   // whether or not to close the CEID, dependent on several factors
   const [isOpen, setIsOpen] = useState(false);
 
+  const [timer, setTimer] = useState(null);
+
   // check whether the CEID should be open everytime the database changes
   useEffect(() => {
     checkIsOpen();
-  }, [userTable, capacityCount]);
+  }, [userTable, capacityCount, timer]);
 
   // check whether the CEID should be open every minute
   useEffect(() => {
-    checkIsOpen();
     const interval = setInterval(() => {
-      checkIsOpen();
+      setTimer(new Date());
     }, 60 * 1000);
     return () => clearInterval(interval);
   }, []);
