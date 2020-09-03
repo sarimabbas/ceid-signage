@@ -87,7 +87,7 @@ export default ({ userCount, capacityCount, isOpen }) => {
             <ClosedIcon width="150" color="red" />
             <p className="text-6xl">
               {userCount >= capacityCount
-                ? "We are at maximum capacity"
+                ? "We are at maximum capacity."
                 : "We are closed."}
             </p>
           </div>
