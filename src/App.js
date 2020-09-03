@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Slide from "./components/Slide";
+import Sign from "./components/Sign";
 import Admin from "./components/Admin";
 import { db } from "./config/firebase";
 import "./styles/tailwind.output.css";
@@ -38,7 +38,7 @@ const App = () => {
       <Router>
         <Switch>
           <Route path="/" exact>
-            <Slide userCount={userTable.length} capacityCount={capacityCount} />
+            <Sign userCount={userTable.length} capacityCount={capacityCount} />
           </Route>
           <Route path="/admin" exact>
             <Admin userTable={userTable} capacityCount={capacityCount} />
