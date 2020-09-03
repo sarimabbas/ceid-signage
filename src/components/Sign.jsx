@@ -17,7 +17,7 @@ export default ({ userCount, capacityCount, isOpen }) => {
     if (retInterval) {
       return (
         <div className="flex flex-col items-center">
-          <h2 className="my-6 text-3xl">The current walk-in time is:</h2>
+          <h2 className="my-6 text-3xl">The current work window is:</h2>
           <div className="text-4xl">{renderInterval(retInterval)}</div>
         </div>
       );
@@ -34,7 +34,7 @@ export default ({ userCount, capacityCount, isOpen }) => {
     }
     return (
       <div className="flex flex-col items-center">
-        <h2 className="my-6 text-3xl">The next walk-in time is:</h2>
+        <h2 className="my-6 text-3xl">The next work window is:</h2>
         <div className="text-4xl">{renderInterval(schedule[counter])}</div>
       </div>
     );
