@@ -1,25 +1,50 @@
 import React, { useState, useEffect } from "react";
-import Slide from "./components/slide";
-import { db } from "./firebase";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Slide from "./components/Slide";
+import Admin from "./components/Admin";
+import { db } from "./config/firebase";
+import "./styles/tailwind.output.css";
 
 const App = () => {
-  const [userCount, setUserCount] = useState(0);
-  const TOTAL_COUNT = 20;
+  const [userTable, setUserTable] = useState([]);
+
+  const [capacityCount, setCapacityCount] = useState(0);
 
   useEffect(() => {
-    const unsubscribe = db.collection("users").onSnapshot((querySnapshot) => {
+    const userListener = db.collection("users").onSnapshot((querySnapshot) => {
       const users = [];
       querySnapshot.forEach((doc) => {
         users.push(doc.id);
       });
-      setUserCount(users.length);
+      setUserTable(users);
     });
-    return unsubscribe;
+
+    const capacityCountListener = db
+      .collection("settings")
+      .doc("capacity")
+      .onSnapshot((doc) => {
+        const capacity = doc.data().value;
+        setCapacityCount(capacity);
+      });
+
+    return () => {
+      userListener.unsubscribe();
+      capacityCountListener.unsubscribe();
+    };
   }, []);
 
   return (
     <div className="App">
-      <Slide userCount={userCount} totalCount={TOTAL_COUNT} />
+      <Router>
+        <Switch>
+          <Route path="/" exact>
+            <Slide userCount={userTable.length} capacityCount={capacityCount} />
+          </Route>
+          <Route path="/admin" exact>
+            <Admin userTable={userTable} capacityCount={capacityCount} />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 };

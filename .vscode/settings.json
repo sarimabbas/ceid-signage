@@ -1,0 +1,12 @@
+{
+  // turn off the CSS linter in favor of stylelint, in order to support Tailwind @ rules
+  "css.validate": false,
+  "filewatcher.commands": [
+    {
+      "match": "tailwind.css",
+      "isAsync": true,
+      "cmd": "yarn --cwd ${workspaceRoot} build:tailwind",
+      "event": "onFileChange"
+    }
+  ]
+}

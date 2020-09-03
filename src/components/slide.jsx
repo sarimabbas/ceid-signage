@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import "./slide.css";
 import { DateTime, Interval } from "luxon";
-import openIntervals from "./openIntervals";
+import openIntervals from "../config/openIntervals";
 
-export default ({ userCount, totalCount }) => {
+export default ({ userCount, capacityCount }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentOpenInterval, setCurrentOpenInterval] = useState(null);
   const [now, setNow] = useState(DateTime.local());
@@ -73,8 +72,8 @@ export default ({ userCount, totalCount }) => {
       {/* slots remaining */}
       <br />
 
-      <h2>{totalCount - userCount} slots remaining.</h2>
-      {totalCount - userCount < 3 ? (
+      <h2>{capacityCount - userCount} slots remaining.</h2>
+      {capacityCount - userCount < 3 ? (
         <p>
           There are not a lot of slots left. You may be asked to leave and
           return at a later time.

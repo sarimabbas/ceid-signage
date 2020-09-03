@@ -1,3 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.App {
+  padding: 20px 0px;
+}
+
+body,
+html,
+#root,
+.App {
+  height: 100%;
+}
+
 .slide {
   /* text-align: center; */
   padding: calc(10px + 4vmin);
@@ -25,4 +40,8 @@
   font-size: 3rem;
   margin: 0;
   font-family: monospace;
+}
+
+tr:nth-child(even) {
+  background-color: #bbc9c9;
 }
