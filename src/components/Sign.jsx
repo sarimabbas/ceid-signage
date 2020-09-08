@@ -63,7 +63,7 @@ export default ({ userCount, capacityCount, isOpen }) => {
   };
 
   return (
-    <div className="container w-full h-full px-4 py-8 mx-auto text-center">
+    <div className="container w-full h-full p-4 mx-auto text-center">
       {/* logo */}
       <img
         src={Logo}
@@ -92,13 +92,6 @@ export default ({ userCount, capacityCount, isOpen }) => {
             </p>
           </div>
         )}
-        {/* show current time interval, if within one, otherwise show all*/}
-        {getCurrentInterval() ? (
-          <div className="mt-10">{getCurrentInterval()}</div>
-        ) : (
-          <div className="mt-10">{getNextInterval()}</div>
-        )}
-
         {/* capacity */}
         {/* <p>We've got {capacityCount - userCount} slots left.</p> */}
         {isOpen ? (
@@ -107,6 +100,14 @@ export default ({ userCount, capacityCount, isOpen }) => {
             <ProgressBar value={userCount} max={capacityCount} />
           </>
         ) : null}
+        <br />
+        {/* show current time interval, if within one, otherwise show all*/}
+        {getCurrentInterval() ? (
+          <div className="mt-10">{getCurrentInterval()}</div>
+        ) : (
+          <div className="mt-10">{getNextInterval()}</div>
+        )}
+        <br />
       </div>
     </div>
   );
