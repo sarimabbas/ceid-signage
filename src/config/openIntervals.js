@@ -97,7 +97,7 @@ const thursday = [
   Interval.fromDateTimes(
     DateTime.fromObject({
       weekday: 4,
-      hour: "16",
+      hour: "15",
       minute: "30",
     }),
     DateTime.fromObject({
