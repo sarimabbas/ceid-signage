@@ -43,13 +43,9 @@ python3 card-reader.py
 
 ## Cloud Function
 
-Use this `GET` endpoint: <https://us-central1-ceid-swiper.cloudfunctions.net/swipeCard>
-
-It expects one query parameter:
-
-- `tagId (string)`: a unique identifier for a swipe log.
-
 ### Development
+
+Code is located in the `functions` folder.
 
 ```bash
 firebase serve
@@ -60,6 +56,12 @@ firebase serve
 ```bash
 firebase deploy
 ```
+
+Function will be deployed to this `GET` endpoint: <https://us-central1-ceid-swiper.cloudfunctions.net/swipeCard>
+
+It expects one query parameter:
+
+- `tagId (string)`: a unique identifier for a swipe log.
 
 ## Cloud Firestore
 
