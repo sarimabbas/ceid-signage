@@ -45,7 +45,7 @@ python3 card-reader.py
 
 ### Development
 
-Code is located in the `functions` folder.
+Code is located in the `functions` folder. Develop locally using this command:
 
 ```bash
 firebase serve
