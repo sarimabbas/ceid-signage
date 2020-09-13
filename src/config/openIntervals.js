@@ -125,27 +125,9 @@ const friday = monday.map((interval) =>
 
 const thisWeek = [...monday, ...tuesday, ...wednesday, ...thursday, ...friday];
 
-const nextWeek = thisWeek.map((interval) => {
-  const start = DateTime.fromObject({
-    weekday: interval.weekday,
-    hour: interval.start.hour,
-    minute: interval.start.minute,
-  }).plus(
-    Duration.fromObject({
-      days: 7,
-    })
-  );
-  const end = DateTime.fromObject({
-    weekday: interval.weekday,
-    hour: interval.end.hour,
-    minute: interval.end.minute,
-  }).plus(
-    Duration.fromObject({
-      days: 7,
-    })
-  );
-  return Interval.fromDateTimes(start, end);
-});
+const nextWeek = thisWeek.map((interval) =>
+  interval.mapEndpoints((endpoint) => endpoint.plus({ days: 7 }))
+);
 
 const schedule = [...thisWeek, ...nextWeek];
 
