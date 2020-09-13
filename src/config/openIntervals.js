@@ -149,4 +149,7 @@ const nextWeek = thisWeek.map((interval) => {
 
 const schedule = [...thisWeek, ...nextWeek];
 
-export { schedule, now };
+const isNowInSchedule = () =>
+  schedule.some((interval) => interval.contains(now()));
+
+export { schedule, now, isNowInSchedule };
