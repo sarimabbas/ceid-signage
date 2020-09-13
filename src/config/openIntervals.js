@@ -31,7 +31,7 @@ const monday = [
     DateTime.fromObject({
       weekday: 1,
       hour: "14",
-      minute: "40",
+      minute: "00",
     })
   ),
   // 2:30 - 4:00 PM
@@ -97,7 +97,7 @@ const thursday = [
   Interval.fromDateTimes(
     DateTime.fromObject({
       weekday: 4,
-      hour: "15",
+      hour: "16",
       minute: "30",
     }),
     DateTime.fromObject({
