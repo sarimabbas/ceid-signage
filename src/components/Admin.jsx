@@ -53,7 +53,7 @@ export default ({ userTable, capacityCount }) => {
 
           <tbody>
             {userTable.map((u, i) => (
-              <tr key={i}>
+              <tr key={u?.id ?? i}>
                 <td>{u?.id}</td>
                 <td>
                   {u?.timestamp?.toLocaleString({
