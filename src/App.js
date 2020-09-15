@@ -54,13 +54,21 @@ const App = () => {
   };
 
   useEffect(() => {
-    const userListener = db.collection("users").onSnapshot((querySnapshot) => {
-      const users = [];
-      querySnapshot.forEach((doc) => {
-        users.push(doc.id);
+    const userListener = db
+      .collection("users")
+      .orderBy("timestamp", "desc")
+      .onSnapshot((querySnapshot) => {
+        const users = [];
+        querySnapshot.forEach((doc) => {
+          const uData = doc.data();
+          users.push({
+            id: doc.id,
+            timestamp: DateTime.fromSeconds(uData?.timestamp?.seconds),
+          });
+        });
+
+        setUserTable(users);
       });
-      setUserTable(users);
-    });
 
     const capacityCountListener = db
       .collection("settings")

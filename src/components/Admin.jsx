@@ -15,6 +15,10 @@ export default ({ userTable, capacityCount }) => {
     });
   };
 
+  const deleteSignIn = async (id) => {
+    await db.collection("users").doc(id).delete();
+  };
+
   return (
     <div className="container p-4 mx-auto">
       {/* Heading */}
@@ -30,6 +34,7 @@ export default ({ userTable, capacityCount }) => {
                 <>
                   <th>Unique ID</th>
                   <th>Timestamp</th>
+                  <th>Delete</th>
                 </>
               ) : (
                 <th>
@@ -42,7 +47,24 @@ export default ({ userTable, capacityCount }) => {
           <tbody>
             {userTable.map((u, i) => (
               <tr key={i}>
-                <td>{u}</td>
+                <td>{u?.id}</td>
+                <td>
+                  {u?.timestamp?.toLocaleString({
+                    weekday: "short",
+                    month: "short",
+                    day: "2-digit",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })}
+                </td>
+                <td className="pl-5">
+                  <a
+                    className="cursor-pointer hover:text-indigo-400"
+                    onClick={() => deleteSignIn(u?.id)}
+                  >
+                    Delete
+                  </a>
+                </td>
               </tr>
             ))}
           </tbody>
