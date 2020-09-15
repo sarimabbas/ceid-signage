@@ -20,6 +20,7 @@ exports.swipeCard = functions.https.onRequest(async (request, response) => {
   } else {
     userRef.set({
       timestamp: new Date(),
+      notes: "",
     });
     return response.send("Logging in: " + tagId);
   }
