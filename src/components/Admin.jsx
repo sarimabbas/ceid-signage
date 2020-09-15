@@ -19,6 +19,12 @@ export default ({ userTable, capacityCount }) => {
     await db.collection("users").doc(id).delete();
   };
 
+  const updateNote = async (id, notes) => {
+    await db.collection("users").doc(id).update({
+      notes: notes,
+    });
+  };
+
   return (
     <div className="container p-4 mx-auto">
       {/* Heading */}
@@ -34,6 +40,7 @@ export default ({ userTable, capacityCount }) => {
                 <>
                   <th>Unique ID</th>
                   <th>Timestamp</th>
+                  <th>Notes</th>
                   <th>Delete</th>
                 </>
               ) : (
@@ -56,6 +63,15 @@ export default ({ userTable, capacityCount }) => {
                     hour: "2-digit",
                     minute: "2-digit",
                   })}
+                </td>
+                <td className="py-2 pl-5">
+                  <input
+                    type="text"
+                    className="p-1 border rounded-md"
+                    value={u?.notes}
+                    onChange={(e) => updateNote(u?.id, e.target.value)}
+                    placeholder="Add notes here..."
+                  />
                 </td>
                 <td className="pl-5">
                   <a

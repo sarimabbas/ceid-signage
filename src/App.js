@@ -64,6 +64,7 @@ const App = () => {
           users.push({
             id: doc.id,
             timestamp: DateTime.fromSeconds(uData?.timestamp?.seconds),
+            notes: uData?.notes,
           });
         });
 
