@@ -106,7 +106,7 @@ const App = () => {
         colors={["#ff0000", "#00ff00", "#0000ff"]}
         retriggerTime={1800000}
         size={5}
-        triggerTime={2000}
+        triggerTime={1800000}
       />
     </div>
   );
