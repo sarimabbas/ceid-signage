@@ -5,6 +5,7 @@ import Sign from "./components/Sign";
 import Admin from "./components/Admin";
 import { schedule, now } from "./config/openIntervals";
 import { db } from "./config/firebase";
+import { ScreenBurnLine } from "react-screen-burn";
 import "./styles/tailwind.output.css";
 
 const App = () => {
@@ -101,6 +102,12 @@ const App = () => {
           </Route>
         </Switch>
       </Router>
+      <ScreenBurnLine
+        colors={["#ff0000", "#00ff00", "#0000ff"]}
+        retriggerTime={1800000}
+        size={5}
+        triggerTime={2000}
+      />
     </div>
   );
 };

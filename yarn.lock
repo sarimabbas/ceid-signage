@@ -9470,6 +9470,11 @@ react-router@5.2.0:
     tiny-invariant "^1.0.2"
     tiny-warning "^1.0.0"
 
+react-screen-burn@^1.0.11:
+  version "1.0.11"
+  resolved "https://registry.yarnpkg.com/react-screen-burn/-/react-screen-burn-1.0.11.tgz#7a18e90efa8c581742eddd855f9d2a1fbae596f0"
+  integrity sha512-t7OsznAHQ7cXlV39XQie5eF1C1oV0QbxPXtoY0WOhF7oXfeeU80Ni5oo5FYu/lkT5qbI5M/FCieVciYlzkqwKQ==
+
 react-scripts@3.4.1:
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/react-scripts/-/react-scripts-3.4.1.tgz#f551298b5c71985cc491b9acf3c8e8c0ae3ada0a"
