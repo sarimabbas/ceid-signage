@@ -98,7 +98,9 @@ export default ({ userCount, capacityCount, isOpen }) => {
         {/* <p>We've got {capacityCount - userCount} slots left.</p> */}
         {isOpen ? (
           <>
-            <h2 className="mt-20 mb-3 text-3xl">Capacity:</h2>
+            <h2 className="mt-20 mb-3 text-3xl" id="capacity">
+              Capacity:
+            </h2>
             <ProgressBar value={userCount} max={capacityCount} />
           </>
         ) : null}
