@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { DateTime, Interval } from "luxon";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Sign from "./components/Sign";
+import EmbeddableSign from "./components/EmbeddableSign";
 import Admin from "./components/Admin";
 import { schedule, now } from "./config/openIntervals";
 import { db } from "./config/firebase";
@@ -99,6 +100,13 @@ const App = () => {
           </Route>
           <Route path="/admin" exact>
             <Admin userTable={userTable} capacityCount={capacityCount} />
+          </Route>
+          <Route path="/embeddable" exact>
+            <EmbeddableSign
+              userCount={userTable.length}
+              capacityCount={capacityCount}
+              isOpen={isOpen}
+            />
           </Route>
         </Switch>
       </Router>
