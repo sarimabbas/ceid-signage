@@ -8,7 +8,7 @@ const now = () =>
   });
 
 const monday = [
-  // 1:-0 - 2:30 PM
+  // 1:00 - 2:30 PM
   Interval.fromDateTimes(
     DateTime.fromObject({
       weekday: 1,
