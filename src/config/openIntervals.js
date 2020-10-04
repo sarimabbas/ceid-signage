@@ -8,55 +8,55 @@ const now = () =>
   });
 
 const monday = [
-  // 10:30 - 12:00 noon
+  // 1:-0 - 2:30 PM
   Interval.fromDateTimes(
     DateTime.fromObject({
       weekday: 1,
-      hour: "10",
-      minute: "30",
-    }),
-    DateTime.fromObject({
-      weekday: 1,
-      hour: "12",
+      hour: "13",
       minute: "00",
-    })
-  ),
-  // 12:30 - 2:00 PM
-  Interval.fromDateTimes(
-    DateTime.fromObject({
-      weekday: 1,
-      hour: "12",
-      minute: "30",
     }),
     DateTime.fromObject({
       weekday: 1,
       hour: "14",
-      minute: "00",
+      minute: "30",
     })
   ),
-  // 2:30 - 4:00 PM
+  // 3:00 - 4:30 PM
   Interval.fromDateTimes(
     DateTime.fromObject({
       weekday: 1,
-      hour: "14",
-      minute: "30",
+      hour: "15",
+      minute: "00",
     }),
     DateTime.fromObject({
       weekday: 1,
       hour: "16",
-      minute: "00",
+      minute: "30",
     })
   ),
-  // 4:30 - 6:00 PM
+  // 5:00 - 6:30 PM
   Interval.fromDateTimes(
     DateTime.fromObject({
       weekday: 1,
-      hour: "16",
-      minute: "30",
+      hour: "17",
+      minute: "00",
     }),
     DateTime.fromObject({
       weekday: 1,
       hour: "18",
+      minute: "30",
+    })
+  ),
+  // 7:00 - 9:00 PM
+  Interval.fromDateTimes(
+    DateTime.fromObject({
+      weekday: 1,
+      hour: "19",
+      minute: "00",
+    }),
+    DateTime.fromObject({
+      weekday: 1,
+      hour: "21",
       minute: "00",
     })
   ),
@@ -93,16 +93,29 @@ const wednesday = monday.map((interval) =>
 );
 
 const thursday = [
-  // 4:30 - 6:00 PM
+  // 5:00 - 6:30 PM
   Interval.fromDateTimes(
     DateTime.fromObject({
       weekday: 4,
-      hour: "16",
-      minute: "30",
+      hour: "17",
+      minute: "00",
     }),
     DateTime.fromObject({
       weekday: 4,
       hour: "18",
+      minute: "30",
+    })
+  ),
+  // 7:00 - 9:00 PM
+  Interval.fromDateTimes(
+    DateTime.fromObject({
+      weekday: 4,
+      hour: "19",
+      minute: "00",
+    }),
+    DateTime.fromObject({
+      weekday: 4,
+      hour: "21",
       minute: "00",
     })
   ),
