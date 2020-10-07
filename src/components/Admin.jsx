@@ -28,8 +28,14 @@ export default ({ userTable, capacityCount }) => {
   return (
     <div className="container p-4 mx-auto">
       {/* Heading */}
+      <a
+        className="inline-block p-2 mb-8 text-xl bg-gray-200 border rounded-md"
+        href="/"
+      >
+        ⬅ Go back to main
+      </a>
+      {/* Heading */}
       <h1 className="mb-2 text-4xl">Admin panel</h1>
-
       {/* sign in table */}
       <div className="p-4 mb-8 bg-gray-100 border border-solid rounded-md shadow-sm">
         <h2 className="mb-8 text-2xl border-b">Sign in table:</h2>
