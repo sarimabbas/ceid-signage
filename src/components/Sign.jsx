@@ -3,7 +3,7 @@ import Logo from "../assets/logo.png";
 import { schedule, now, isNowInSchedule } from "../config/openIntervals";
 import ProgressBar from "./Progress";
 import { ReactComponent as OpenIcon } from "../assets/open.svg";
-import { ReactComponent as ClosedIcon } from "../assets/closed.svg";
+import { ReactComponent as AlertIcon } from "../assets/alert.svg";
 
 export default ({ userCount, capacityCount, isOpen }) => {
   const getCurrentInterval = () => {
@@ -83,13 +83,13 @@ export default ({ userCount, capacityCount, isOpen }) => {
           </div>
         ) : (
           <div className="flex flex-col items-center">
-            <ClosedIcon width="150" color="red" />
+            <AlertIcon width="150" color="orange" />
             {/* there are two situations you might not be open */}
             {/* either the schedule does not permit */}
             {/* or the max capacity has been reached */}
             <p className="text-6xl">
               {!isNowInSchedule()
-                ? "We are closed."
+                ? "The CEID is Operational."
                 : "We are currently at maximum capacity."}
             </p>
           </div>
