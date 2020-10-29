@@ -16,6 +16,9 @@ const App = () => {
   // the maximum capacity e.g. 20
   const [capacityCount, setCapacityCount] = useState(0);
 
+  // the admin emergency note (to close the CEID)
+  const [emergencyNote, setEmergencyNote] = useState("");
+
   // whether or not to close the CEID, dependent on several factors
   const [isOpen, setIsOpen] = useState(false);
 
@@ -24,7 +27,7 @@ const App = () => {
   // check whether the CEID should be open everytime the database changes
   useEffect(() => {
     checkIsOpen();
-  }, [userTable, capacityCount, timer]);
+  }, [userTable, capacityCount, timer, emergencyNote]);
 
   // check whether the CEID should be open every minute
   useEffect(() => {
@@ -37,7 +40,9 @@ const App = () => {
   const checkIsOpen = () => {
     // if there is a force close in the firebase, close the CEID
     // and don't even check the other conditions
-    // TODO
+    let checkOne = !emergencyNote;
+
+    console.log("check one", checkOne);
 
     // if there are too many people, close the CEID,
     // and don't even check the other conditions
@@ -52,7 +57,7 @@ const App = () => {
 
     console.log("check three", checkThree);
 
-    setIsOpen(checkTwo && checkThree);
+    setIsOpen(checkOne && checkTwo && checkThree);
   };
 
   useEffect(() => {
@@ -81,9 +86,18 @@ const App = () => {
         setCapacityCount(capacity);
       });
 
+    const emergencyNoteListener = db
+      .collection("settings")
+      .doc("emergency")
+      .onSnapshot((doc) => {
+        const note = doc.data().value;
+        setEmergencyNote(note);
+      });
+
     return () => {
       userListener.unsubscribe();
       capacityCountListener.unsubscribe();
+      emergencyNoteListener.unsubscribe();
     };
   }, []);
 
@@ -95,16 +109,22 @@ const App = () => {
             <Sign
               userCount={userTable.length}
               capacityCount={capacityCount}
+              emergencyNote={emergencyNote}
               isOpen={isOpen}
             />
           </Route>
           <Route path="/admin" exact>
-            <Admin userTable={userTable} capacityCount={capacityCount} />
+            <Admin
+              userTable={userTable}
+              capacityCount={capacityCount}
+              emergencyNote={emergencyNote}
+            />
           </Route>
           <Route path="/embeddable" exact>
             <EmbeddableSign
               userCount={userTable.length}
               capacityCount={capacityCount}
+              emergencyNote={emergencyNote}
               isOpen={isOpen}
             />
           </Route>

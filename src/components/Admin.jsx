@@ -1,9 +1,15 @@
 import React from "react";
 import { db } from "../config/firebase";
 
-export default ({ userTable, capacityCount }) => {
+export default ({ userTable, capacityCount, emergencyNote }) => {
   const setCapacity = (event) => {
     db.collection("settings").doc("capacity").set({
+      value: event.target.value,
+    });
+  };
+
+  const setEmergencyNote = (event) => {
+    db.collection("settings").doc("emergency").set({
       value: event.target.value,
     });
   };
@@ -121,7 +127,7 @@ export default ({ userTable, capacityCount }) => {
           />
         </div>
         {/* delete sign ins */}
-        <div className="flex items-center">
+        <div className="flex items-center mb-4">
           <h3 className="mr-4 text-xl">Delete Sign Ins (reset table)</h3>
           <button
             className="p-2 text-white bg-red-600 rounded-md shadow-sm hover:bg-red-800"
@@ -129,6 +135,15 @@ export default ({ userTable, capacityCount }) => {
           >
             Delete sign ins
           </button>
+        </div>
+        {/* set emergency note */}
+        <div className="flex items-center mb-4">
+          <h3 className="mr-4 text-xl">Set emergency note</h3>
+          <textarea
+            className="p-2 border rounded-md shadow-sm"
+            value={emergencyNote}
+            onChange={setEmergencyNote}
+          />
         </div>
       </div>
     </div>

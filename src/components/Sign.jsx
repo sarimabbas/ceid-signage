@@ -5,7 +5,7 @@ import ProgressBar from "./Progress";
 import { ReactComponent as OpenIcon } from "../assets/open.svg";
 import { ReactComponent as AlertIcon } from "../assets/alert.svg";
 
-export default ({ userCount, capacityCount, isOpen }) => {
+export default ({ userCount, capacityCount, isOpen, emergencyNote }) => {
   const getCurrentInterval = () => {
     let retInterval = null;
     schedule.some((interval) => {
@@ -90,7 +90,7 @@ export default ({ userCount, capacityCount, isOpen }) => {
             <p className="text-6xl">
               {!isNowInSchedule()
                 ? "The CEID is Operational."
-                : "We are currently at maximum capacity."}
+                : emergencyNote ?? "We are currently at maximum capacity."}
             </p>
           </div>
         )}

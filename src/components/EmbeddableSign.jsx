@@ -5,7 +5,7 @@ import ProgressBar from "./Progress";
 import { ReactComponent as OpenIcon } from "../assets/open.svg";
 import { ReactComponent as ClosedIcon } from "../assets/closed.svg";
 
-export default ({ userCount, capacityCount, isOpen }) => {
+export default ({ userCount, capacityCount, isOpen, emergencyNote }) => {
   const getCurrentInterval = () => {
     let retInterval = null;
     schedule.some((interval) => {
@@ -76,10 +76,16 @@ export default ({ userCount, capacityCount, isOpen }) => {
         className="flex flex-col items-center justify-center w-full"
       >
         {/* capacity */}
-        <h2 className="mt-20 mb-3 text-3xl" id="capacity">
-          Capacity:
-        </h2>
-        <ProgressBar value={userCount} max={capacityCount} />
+        {emergencyNote ? (
+          <h1 className="text-6xl">{emergencyNote}</h1>
+        ) : (
+          <>
+            <h2 className="mt-20 mb-3 text-3xl" id="capacity">
+              Capacity:
+            </h2>
+            <ProgressBar value={userCount} max={capacityCount} />
+          </>
+        )}
         <br />
         {/* show current time interval, if within one, otherwise show all*/}
         {getCurrentInterval() ? (
