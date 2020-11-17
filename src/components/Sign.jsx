@@ -88,9 +88,11 @@ export default ({ userCount, capacityCount, isOpen, emergencyNote }) => {
             {/* either the schedule does not permit */}
             {/* or the max capacity has been reached */}
             <p className="text-6xl">
-              {!isNowInSchedule()
-                ? "The CEID is Operational."
-                : emergencyNote ?? "We are currently at maximum capacity."}
+              {emergencyNote
+                ? emergencyNote
+                : !isNowInSchedule()
+                ? "The CEID is Operational"
+                : "We are currently at maximum capacity."}
             </p>
           </div>
         )}
