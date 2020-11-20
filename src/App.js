@@ -3,6 +3,7 @@ import { DateTime, Interval } from "luxon";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Sign from "./components/Sign";
 import EmbeddableSign from "./components/EmbeddableSign";
+import Creepy from "./components/Creepy";
 import Admin from "./components/Admin";
 import { schedule, now } from "./config/openIntervals";
 import { db } from "./config/firebase";
@@ -126,6 +127,10 @@ const App = () => {
               capacityCount={capacityCount}
               emergencyNote={emergencyNote}
               isOpen={isOpen}
+            />
+          </Route>
+          <Route path="/creepy" exact>
+            <Creepy />
             />
           </Route>
         </Switch>
