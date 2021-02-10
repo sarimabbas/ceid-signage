@@ -62,20 +62,34 @@ const monday = [
   ),
 ];
 
-const tuesday = monday.map((interval) =>
+const tuesday = [
+  // 5:00 - 6:30 PM
   Interval.fromDateTimes(
     DateTime.fromObject({
       weekday: 2,
-      hour: interval.start.hour,
-      minute: interval.start.minute,
+      hour: "17",
+      minute: "00",
     }),
     DateTime.fromObject({
       weekday: 2,
-      hour: interval.end.hour,
-      minute: interval.end.minute,
+      hour: "18",
+      minute: "30",
     })
-  )
-);
+  ),
+  // 7:00 - 9:00 PM
+  Interval.fromDateTimes(
+    DateTime.fromObject({
+      weekday: 2,
+      hour: "19",
+      minute: "00",
+    }),
+    DateTime.fromObject({
+      weekday: 2,
+      hour: "21",
+      minute: "00",
+    })
+  ),
+];
 
 const wednesday = monday.map((interval) =>
   Interval.fromDateTimes(
@@ -92,34 +106,20 @@ const wednesday = monday.map((interval) =>
   )
 );
 
-const thursday = [
-  // 5:00 - 6:30 PM
+const thursday = monday.map((interval) =>
   Interval.fromDateTimes(
     DateTime.fromObject({
       weekday: 4,
-      hour: "17",
-      minute: "00",
+      hour: interval.start.hour,
+      minute: interval.start.minute,
     }),
     DateTime.fromObject({
       weekday: 4,
-      hour: "18",
-      minute: "30",
+      hour: interval.end.hour,
+      minute: interval.end.minute,
     })
-  ),
-  // 7:00 - 9:00 PM
-  Interval.fromDateTimes(
-    DateTime.fromObject({
-      weekday: 4,
-      hour: "19",
-      minute: "00",
-    }),
-    DateTime.fromObject({
-      weekday: 4,
-      hour: "21",
-      minute: "00",
-    })
-  ),
-];
+  )
+);
 
 const friday = monday.map((interval) =>
   Interval.fromDateTimes(
