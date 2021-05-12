@@ -25,3 +25,17 @@ exports.swipeCard = functions.https.onRequest(async (request, response) => {
     return response.send("Logging in: " + tagId);
   }
 });
+
+exports.clearSignIns = functions.pubsub
+  .schedule("30 20 * * *")
+  .timeZone("America/New_York") // Users can choose timezone - default is America/Los_Angeles
+  .onRun(async (context) => {
+    console.log("This will be run every day at 8:05 PM Eastern!");
+    const querySnapshot = await firestore.collection("users").get();
+    await Promise.all(
+      querySnapshot.docs.map((d) =>
+        firestore.collection("users").doc(d.id).delete()
+      )
+    );
+    return;
+  });
